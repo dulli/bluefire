@@ -1,0 +1,28 @@
+02 			02			02			02
+42 handle		042 handle		42 handle		42 handle
+20 In?			00 Out?			20 In?			00 Out?
+0C dlen 12		10 dlen 16		0C dlen 12		10 dlen 16
+00 plen?		00 plen?		00 plen?		00 plen?
+08 plen 08?		0C plen 12?		08 plen 8?		0C plen 12?
+00			00			00			00
+01			01			01			01
+00 			00 			00 			00 
+02 L2CAP_CONN_REQ	03 L2CAP_CONN_RSP	02 L2CAP_CONN_REQ	03 L2CAP_CONN_RSP
+86 identifier		86 identifier		A0 identifier		A0 identifier
+04 length		08 length		04 length		08 length
+00 psm			00 dcid			00 psm			00 dcid
+11 psm			42 dcid			13 psm			43 dcid
+00 scid			00 scid			00 scid			00 scid
+82 scid			82 scid			8F scid			8F scid
+00			00 L2CAP_CR_SUCCESS	00			00 L2CAP_CR_PEND
+			00 L2CAP_CR_SUCCESS				01 L2CAP_CR_PEND
+			00 L2CAP_CS_NO_INFO				00 L2CAP_CS_AUTHOR_PEND
+			00 L2CAP_CS_NO_INFO				02 L2CAP_CS_AUTHOR_PEND
+			00						00
+		
+
+//scid: source channel identifier
+//dcid: device channel identifier
+//dlen: data total length
+//plen: parameter length
+//python ORs keycodes with 0xF000

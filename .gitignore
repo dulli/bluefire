@@ -1,0 +1,9 @@
+*.pyc
+
+*.log
+
+*.old
+
+*.sublime-*
+
+.data

@@ -1,0 +1,13 @@
+HANDSHAKE_SUCCESSFUL = 0x00                 # Request has been correctly received
+HANDSHAKE_NOT_READY = 0x01                  # Device is too busy to accept data
+HANDSHAKE_ERR_INVALID_REPORT_ID = 0x02      # Invalid Report ID
+HANDSHAKE_ERR_UNSUPPORTED_REQUEST = 0x03    # Device does not support the request
+HANDSHAKE_ERR_INVALID_PARAMETER = 0x04      # Parameter value is out of range or inappropriate
+HANDSHAKE_ERR_UNKNOWN = 0x0E                # Device could not identify the error condition
+HANDSHAKE_ERR_FATAL = 0x0F                  # Restart is essential to resume
+CONTROL_SUSPEND = 0x03                      # Allow the Device to suspend
+CONTROL_EXIT_SUSPEND = 0x03                 # Exist suspend mode on the Device
+TYPE_OUTPUT = 0x02
+TYPE_FEATURE = 0x03
+PROTOCOL_BOOT_MODE = 0x00
+PROTOCOL_REPORT_MODE = 0x01
