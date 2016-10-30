@@ -1,4 +1,4 @@
-""" Bluez HID Python Implementation """
+""" Python 3 Bluetooth HID Input Implementation """
 import logging
 import socket
 

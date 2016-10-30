@@ -6,7 +6,7 @@ import sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 import plac
 
-from remote import FireRemote
+from bluefire import FireRemote
 from lib import log
 
 _LOG = logging.getLogger(__name__)
