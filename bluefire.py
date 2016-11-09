@@ -78,7 +78,10 @@ class _HID(object):
         """ Close the open and control channels """
         self.connected = False
         for psm in self._channels:
-            self._channels[psm].shutdown(socket.SHUT_RDWR)
+            try:
+                self._channels[psm].shutdown(socket.SHUT_RDWR)
+            except ConnectionResetError:
+                _LOG.warning('Socket has already been shut down...')
             self._channels[psm].close()
         self._channels = {}
 
@@ -106,9 +109,11 @@ class _HID(object):
                 if self.idle > self.timeout:
                     self.disconnect()
                     _LOG.info('HID device has been idle for %is...', self.timeout)
+                    break
             except ConnectionResetError:
                 _LOG.warning('Connection has been reset by peer, disconnecting...')
                 self.disconnect()
+                break
 
 class HIDEvents(object):
     """ Trigger callbacks that are registered to key press/release events """
