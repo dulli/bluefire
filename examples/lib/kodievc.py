@@ -26,6 +26,8 @@ class SimpleEventClient(object):
     _FLAG_DOWN = pack("!H", 0x0b)
     _FLAG_UP = pack("!H", 0x0d)
     _CODE = pack("!H", 0x00)
+    _RAW_FLAG_DOWN = pack("!H", 0x0a)
+    _RAW_FLAG_UP = pack("!H", 0x0c)
     _AMOUNT = pack("!H", 0x00)
     _KEYMAP = b"KB\0"
 
@@ -48,6 +50,13 @@ class SimpleEventClient(object):
         name = bytes(name[0:128]+'\0', 'utf-8')
         payload = name+self._ICON+self._RESERVED_PORT+self._RESERVED_HELO
         return self._send_message(self._TYPE_HELO, payload)
+
+    def send_raw_button(self, code, direction):
+        """ Send a button event (either 'up' or 'down') """
+        code = pack("!H", code)
+        flag = self._RAW_FLAG_UP if direction is 'up' else self._RAW_FLAG_DOWN
+        payload = code+flag+self._AMOUNT+b"\0\0"
+        return self._send_message(self._TYPE_BUTTON, payload)
 
     def send_button(self, name, direction):
         """ Send a button event (either 'up' or 'down') """

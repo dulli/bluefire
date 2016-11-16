@@ -20,18 +20,18 @@ _CONTROLLER_MAC = "00:1A:7D:DA:71:13"
 class EventClient(object):
     """ EventClient implementation with a keymap for the Fire TV Remote """
     keymap = {
-        'KEY_KPENTER' : 'enter',
-        'KEY_BACK' : 'browser_back',
-        'KEY_MENU' : 'menu',
-        'KEY_LEFT' : 'left',
-        'KEY_UP' : 'up',
-        'KEY_RIGHT' : 'right',
-        'KEY_DOWN' : 'down',
-        'KEY_REWIND' : 'rewind',
-        'KEY_FASTFORWARD' : 'fastforward',
-        'KEY_PLAYPAUSE' : 'play_pause',
-        'KEY_HOMEPAGE' : 'browser_home',
-        'KEY_SEARCH' : 'browser_search'
+        'KEY_KPENTER' : 'enter', #0x10F,
+        'KEY_BACK' : 'browser_back', #0xa6,
+        'KEY_MENU' : 'menu', #0x13f,
+        'KEY_LEFT' : 'left', #0x114,
+        'KEY_UP' : 'up', #0x111,
+        'KEY_RIGHT' : 'right', #0x113,
+        'KEY_DOWN' : 'down', #0x112,
+        'KEY_REWIND' :'rewind', #0xBA,
+        'KEY_FASTFORWARD' : 'fastforward', #0xBB,
+        'KEY_PLAYPAUSE' : 'play_pause', #0xB3,
+        'KEY_HOMEPAGE' : 'browser_home', #0xAC,
+        'KEY_SEARCH' : 'browser_search' #0xAA,
     }
 
     def __init__(self, name, host, port=9777):
