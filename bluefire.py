@@ -110,6 +110,7 @@ class _HID(object):
                     self.disconnect()
                     _LOG.info('HID device has been idle for %is...', self.timeout)
                     break
+            except TimeoutError:
             except ConnectionResetError:
                 _LOG.warning('Connection has been reset by peer, disconnecting...')
                 self.disconnect()
