@@ -67,7 +67,7 @@ The example scripts require the `plac` module to parse command line arguments.
 
 ## Errors and Workarounds
 * `Permission denied (13)`: Binding a bluetooth socket to a port may require to
-  be run with as root (i.e. try to run the script again with `sudo`)
+  be run as root (i.e. try to run the script again with `sudo`)
 * `Address already in use (98)`: BlueZ input plugin needs to be disabled
   (see _Setup_)
 
