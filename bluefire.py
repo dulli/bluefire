@@ -2,7 +2,12 @@
 import logging
 import socket
 
+import bluetooth
+
 _LOG = logging.getLogger(__name__)
+_L2CAP_PROTO = bluetooth.L2CAP # socket.BTPROTO_L2CAP
+_BT_TIMEOUT = bluetooth.btcommon.BluetoothError # socket.timeout
+_SHUT_RDWR = socket.SHUT_RDWR
 
 class _HID(object):
     _BUFFER_SIZE = 1024
@@ -24,13 +29,14 @@ class _HID(object):
         self.timeout = 100
         self._channels = {}
 
-    def open_channel(self, psm, mode, protocol=socket.BTPROTO_L2CAP):
+    def open_channel(self, psm, mode, protocol=_L2CAP_PROTO):
         """ Open a socket on the given PSM that either listens for incoming
             connections or connects to a remote device directly """
-        bluetooth_socket = socket.socket(socket.AF_BLUETOOTH,
-                                         socket.SOCK_STREAM,
-                                         protocol)
-        #bluetooth_socket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
+        #bluetooth_socket = socket.socket(socket.AF_BLUETOOTH,
+        #                                 socket.SOCK_STREAM,
+        #                                 protocol)
+
+        bluetooth_socket = bluetooth.BluetoothSocket(protocol)
         if mode == HIDDevice.MODE_CONNECT:
             bluetooth_socket.connect((self.addr, psm))
             self.connected = True
@@ -58,7 +64,7 @@ class _HID(object):
                         self._channels[psm] = self._accept_connection(self._channels[psm])
                         accepted.append(psm)
                 connected = True
-            except socket.timeout: #bluetooth.btcommon.BluetoothError:
+            except _BT_TIMEOUT:
                 connected = False
         return connected
 
@@ -79,7 +85,7 @@ class _HID(object):
         self.connected = False
         for psm in self._channels:
             try:
-                self._channels[psm].shutdown(socket.SHUT_RDWR)
+                self._channels[psm].shutdown(_SHUT_RDWR)
             except ConnectionResetError:
                 _LOG.warning('Socket has already been shut down...')
             self._channels[psm].close()
@@ -104,7 +110,7 @@ class _HID(object):
                     _, data = self._parse_message(message)
                     if data is not None:
                         callback(data)
-            except socket.timeout: #bluetooth.btcommon.BluetoothError:
+            except _BT_TIMEOUT:
                 self.idle += self._RECV_TIMEOUT
                 if self.idle > self.timeout:
                     self.disconnect()

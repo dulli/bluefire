@@ -19,8 +19,8 @@ _TIMEOUT = 60
 def main(debug: ("Enable debug output", 'flag', 'd'),
          connect: ("Force a new connection", 'flag', 'c')):
     """ Start the example script """
-    log.setup('logevents.log', debug)
-    _LOG.info('LogEvents started with PID %i', _PID)
+    log.setup('eventlogger.log', debug)
+    _LOG.info('EventLogger started with PID %i', _PID)
     _LOG.info('This example will end after it has been idle for %i seconds', _TIMEOUT)
 
     remote = FireRemote(_DEVICE_MAC if connect else _CONTROLLER_MAC)
@@ -32,7 +32,7 @@ def main(debug: ("Enable debug output", 'flag', 'd'),
         remote.event_loop()
     except KeyboardInterrupt:
         print('')
-        _LOG.info('LogEvents has been terminated...')
+        _LOG.info('EventLogger has been terminated...')
     remote.disconnect()
 
 if __name__ == "__main__":

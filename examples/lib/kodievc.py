@@ -23,8 +23,8 @@ class SimpleEventClient(object):
     _RESERVED_HELO = pack("!I", 0x00) + pack("!I", 0x00)
 
     _TYPE_BUTTON = pack("!H", 0x03)
-    _FLAG_DOWN = pack("!H", 0x0b)
-    _FLAG_UP = pack("!H", 0x0d)
+    _FLAG_DOWN = pack("!H", 0x4b)
+    _FLAG_UP = pack("!H", 0x4d)
     _CODE = pack("!H", 0x00)
     _RAW_FLAG_DOWN = pack("!H", 0x0a)
     _RAW_FLAG_UP = pack("!H", 0x0c)

@@ -1,0 +1,11 @@
+#!/bin/bash 
+hciconfig hci0 up pscan
+BASEDIR=$(dirname $0)
+if [ "$1" = "-f" ]; then
+	python3 $BASEDIR/examples/kodi.py 192.168.188.51 -t 3600 >/dev/null 2>&1 & disown
+elif [ "$1" = "-c" ]; then
+	python3 $BASEDIR/examples/kodi.py 192.168.188.51 -t 3600 -d -c
+else
+	python3 $BASEDIR/examples/kodi.py 192.168.188.51 -t 3600 -d
+fi
+exit 0

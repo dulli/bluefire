@@ -1,0 +1,13 @@
+[Unit]
+Description=bluefire
+After=network.target
+
+[Service]
+ExecStart=/bin/bash -c 'source /home/dietpi/bluefire/bin/activate; /home/dietpi/bluefire/kodi'
+WorkingDirectory=/home/dietpi/bluefire
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
